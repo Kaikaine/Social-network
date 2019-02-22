@@ -39,6 +39,14 @@ if(isset($_POST['register_button'])) {
     if($email == $email2) {
         if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+
+            $e_check = mysqli_query($con, "SELECT email FROM users WHERE email='$email");
+
+            $num_rows = mysqli_num_rows($e_check);
+
+            if($num_rows > 0) {
+                echo "Email already in use";
+            }
         } else {
             echo "Invalid Format";
         }
