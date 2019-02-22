@@ -1,4 +1,5 @@
 <?php
+session_start();
 $con = mysqli_connect('localhost', 'root', '', 'social');
 if(mysqli_connect_error()) {
     echo 'Failed to connect: ' . mysqli_connect_error();
@@ -17,17 +18,25 @@ if(isset($_POST['register_button'])) {
     $fname = str_replace(' ', '', $fname); // remove spaces
     $fname = ucfirst(strtolower($fname));
 
+    $_SESSION['reg_fname'] = $fname;
+
     $lname = strip_tags($_POST['reg_lname']); // remove html tags
     $lname = str_replace(' ', '', $lname); // remove spaces
     $lname = ucfirst(strtolower($lname));
+
+    $_SESSION['reg_lname'] = $lname;
 
     $email = strip_tags($_POST['reg_email']); // remove html tags
     $email = str_replace(' ', '', $email); // remove spaces
     $email = ucfirst(strtolower($email));
 
+    $_SESSION['reg_email'] = $email;
+
     $email2 = strip_tags($_POST['reg_email2']); // remove html tags
     $email2 = str_replace(' ', '', $email2); // remove spaces
     $email2 = ucfirst(strtolower($email2));
+
+    $_SESSION['reg_email2'] = $email2;
 
     $password = strip_tags($_POST['reg_password']); // remove html tags
     
@@ -66,12 +75,12 @@ if(isset($_POST['register_button'])) {
         echo "Passwords must match";
     } else {
         if(preg_match('/[^A-Za-z0-9]/', $password)) {
-            echo "Your password can only contain numbers or characters"
+            echo "Your password can only contain numbers or characters";
         }
     }
 
     if(strlen($password) > 30 || strlen($password < 5)) {
-        echo "Your password must be between 5 and 30 characters"
+        echo "Your password must be between 5 and 30 characters";
     }
 }
 ?>
@@ -88,13 +97,22 @@ if(isset($_POST['register_button'])) {
 </head>
 <body>
     <form action="register.php" method='POST'>
-    <input autocomplete='off' type="text" name='reg_fname' placeholder='First Name' required>
+    <input autocomplete='off' type="text" name='reg_fname' placeholder='First Name' value="<?php if(isset($_SESSION['reg_fname'])) {
+        echo $_SESSION['reg_fname'];
+    }  ?>"
+    required>
     <br>
-    <input autocomplete='off' type="text" name='reg_lname' placeholder='Last Name' required>
+    <input autocomplete='off' type="text" name='reg_lname' placeholder='Last Name' value="<?php if(isset($_SESSION['reg_lname'])) {
+        echo $_SESSION['reg_lname'];
+    }  ?>" required>
     <br>
-    <input autocomplete='off' type="email" name='reg_email' placeholder='Email' required>
+    <input autocomplete='off' type="email" name='reg_email' placeholder='Email' value="<?php if(isset($_SESSION['reg_email'])) {
+        echo $_SESSION['reg_email'];
+    }  ?>" required>
     <br>
-    <input autocomplete='off' type="email" name='reg_email2' placeholder='Confirm Email' required>
+    <input autocomplete='off' type="email" name='reg_email2' placeholder='Confirm Email' value="<?php if(isset($_SESSION['reg_email2'])) {
+        echo $_SESSION['reg_email2'];
+    }  ?>" required>
     <br>
     <input autocomplete='off' type="password" name='reg_password' placeholder='Password' required>
     <br>
