@@ -94,6 +94,23 @@ if(isset($_POST['register_button'])) {
             $username = $username . "_" . $i;
             $check_username_query = mysqli_query($con, "SELECT username FROM users WHERE username='$username'");
         }
+
+        $rand = rand(1,6);
+
+        if($rand == 1) {
+            $profile_pic = "assets/images/profile_pics/default/head_red.png";
+        } else if ($rand == 2) {
+            $profile_pic = "assets/images/profile_pics/default/head_pumpkin.png";
+        } else if ($rand == 3) {
+            $profile_pic = "assets/images/profile_pics/default/head_pomegranate.png";
+        } else if ($rand == 4) {
+            $profile_pic = "assets/images/profile_pics/default/head_belize_hole.png";
+        } else if ($rand == 5) {
+            $profile_pic = "assets/images/profile_pics/default/head_amethyst.png";
+        } else if ($rand == 6) {
+            $profile_pic = "assets/images/profile_pics/default/head_alizarin.png";
+        }
+        
     }
 }
 ?>
