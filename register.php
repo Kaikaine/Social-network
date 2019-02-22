@@ -53,6 +53,26 @@ if(isset($_POST['register_button'])) {
     } else {
         echo "Emails don't match";
     }
+
+    if(strlen($fname) > 50 || strlen($fname < 2)) {
+        echo "Name must be between 2 and 25 characters";
+    }
+
+    if(strlen($lname > 50) || strlen($lname < 2)) {
+        echo "Name must be between 2 and 25 characters";
+    }
+
+    if($password != $password2) {
+        echo "Passwords must match";
+    } else {
+        if(preg_match('/[^A-Za-z0-9]/', $password)) {
+            echo "Your password can only contain numbers or characters"
+        }
+    }
+
+    if(strlen($password) > 30 || strlen($password < 5)) {
+        echo "Your password must be between 5 and 30 characters"
+    }
 }
 ?>
 
