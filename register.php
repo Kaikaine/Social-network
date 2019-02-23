@@ -14,13 +14,25 @@ $date = ""; //Sign up date
 $error_array = array(); //Holds error messages
 ?>
 
-
 <html>
 <head>
 	<title>Welcome to Swirlfeed!</title>
+    <link rel='stylesheet' href='assets/css/register_style.css'>
+    
 </head>
 <body>
 
+    <div class='wrapper'>
+    
+    <div class='login_box'>
+    
+    <div class="login_header">
+        <h1>MyPlace</h1>
+        <p>
+        Login or Sign up below
+        </p>
+    </div>
+    <div id='first'>
 	<form action="register.php" method="POST">
 		<input type="email" name="log_email" placeholder="Email Address" value="<?php 
 		if(isset($_SESSION['log_email'])) {
@@ -32,10 +44,14 @@ $error_array = array(); //Holds error messages
 		<br>
 		<?php if(in_array("Email or password was incorrect<br>", $error_array)) echo  "Email or password was incorrect<br>"; ?>
 		<input type="submit" name="login_button" value="Login">
-		<br>
+        <br>
+        
+        <a href="#"class='signup' id='signup'>Need an account? Register Here</a>
 
 	</form>
+    </div>
 
+    <div id='second'>
 	<form action="register.php" method="POST">
 		<input type="text" name="reg_fname" placeholder="First Name" value="<?php 
 		if(isset($_SESSION['reg_fname'])) {
@@ -45,9 +61,6 @@ $error_array = array(); //Holds error messages
 		<br>
 		<?php if(in_array("Your first name must be between 2 and 25 characters<br>", $error_array)) echo "Your first name must be between 2 and 25 characters<br>"; ?>
 		
-		
-
-
 		<input type="text" name="reg_lname" placeholder="Last Name" value="<?php 
 		if(isset($_SESSION['reg_lname'])) {
 			echo $_SESSION['reg_lname'];
@@ -88,8 +101,14 @@ $error_array = array(); //Holds error messages
 
 		<?php if(in_array("<span style='color: #14C800;'>You're all set! Goahead and login!</span><br>", $error_array)) echo "<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>"; ?>
 
-	</form>
+        <a href="#" class='signin' id='signin'>Already have an account? Login here</a>
 
+    </form>
+    </div>
 
+    </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src='assets/js/register.js'></script>
 </body>
 </html>
