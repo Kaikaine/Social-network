@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+html {
+    font-size: 62.5%;
+}
+
+.top_bar {
+    width: 100%;
+    min-width: 1050px;
+    height: 4rem;
+    background-color: #20aae5;
+    border-bottom: .5rem solid #1894ca;
+    margin-bottom: 1rem;
+    display: inline-flex;
+}

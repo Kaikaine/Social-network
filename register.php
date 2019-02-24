@@ -18,9 +18,29 @@ $error_array = array(); //Holds error messages
 <head>
 	<title>Welcome to Swirlfeed!</title>
     <link rel='stylesheet' href='assets/css/register_style.css'>
-    
+	<link rel="stylesheet" type="text/css" media="screen" href="main.css">
+
 </head>
 <body>
+
+<?php  
+
+	if(isset($_POST['register_button'])) {
+		echo '
+		<script>
+
+		$(document).ready(function() {
+			$("#first").hide();
+			$("#second").show();
+		});
+
+		</script>
+
+		';
+	}
+
+
+	?>
 
     <div class='wrapper'>
     
